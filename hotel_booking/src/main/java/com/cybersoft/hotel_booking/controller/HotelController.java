@@ -30,7 +30,7 @@ public class HotelController {
 
     //READ
     @GetMapping("/get")
-    public ResponseEntity<List<HotelEntity>> findAllHotel() {
+    public ResponseEntity<Object> findAllHotel() {
         List<HotelEntity> hotelEntityList = hotelService.findAllHotel();
 
         if (hotelEntityList.isEmpty()) {
