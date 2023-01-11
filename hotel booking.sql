@@ -119,7 +119,7 @@ image text DEFAULT NULL,
 city_id int DEFAULT NULL,
 -- serviceId int DEFAULT NULL,
 PRIMARY KEY (id),
-FOREIGN KEY (city_id) REFERENCES city (id)-- ON DELETE CASCADE,
+FOREIGN KEY (city_id) REFERENCES city (id) ON DELETE CASCADE
 );
 SELECT * FROM hotel;
 
@@ -140,8 +140,8 @@ id int NOT NULL AUTO_INCREMENT,
 hotel_id int DEFAULT NULL,
 service_id int DEFAULT NULL,
 PRIMARY KEY (id),
-FOREIGN KEY (hotel_id) REFERENCES hotel (id),-- ON DELETE CASCADE,
-FOREIGN KEY (service_id) REFERENCES service (id)-- ON DELETE CASCADE,
+FOREIGN KEY (hotel_id) REFERENCES hotel (id) ON DELETE CASCADE,
+FOREIGN KEY (service_id) REFERENCES service (id) ON DELETE CASCADE
 );
 
 INSERT INTO hotel_service (hotel_id, service_id) VALUES
@@ -194,7 +194,7 @@ distance decimal(4,2) DEFAULT NULL CHECK (distance > 0 ),
 image text DEFAULT NULL,
 hotel_id int DEFAULT NULL,
 PRIMARY KEY (id),
-FOREIGN KEY (hotel_id) REFERENCES hotel (id)-- ON DELETE CASCADE
+FOREIGN KEY (hotel_id) REFERENCES hotel (id) ON DELETE CASCADE
 );
 SELECT * FROM attraction;
 
@@ -251,8 +251,8 @@ created_date date DEFAULT NULL,
 hotel_id int DEFAULT NULL,
 user_id int DEFAULT NULL,
 PRIMARY KEY (id),
-FOREIGN KEY (hotel_id) REFERENCES hotel (id),-- ON DELETE CASCADE,
-FOREIGN KEY (user_id) REFERENCES users (id)-- ON DELETE CASCADE,
+FOREIGN KEY (hotel_id) REFERENCES hotel (id) ON DELETE CASCADE,
+FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
 SELECT * FROM review;
 
@@ -325,9 +325,9 @@ hotel_id int DEFAULT NULL,
 bed_category_id int DEFAULT NULL,
 room_category_id int DEFAULT NULL,
 PRIMARY KEY (id),
-FOREIGN KEY (hotel_id) REFERENCES hotel (id),-- ON DELETE CASCADE,
-FOREIGN KEY (bed_category_id) REFERENCES bed_category (id),-- ON DELETE CASCADE,
-FOREIGN KEY (room_category_id) REFERENCES room_category (id)-- ON DELETE CASCADE,
+FOREIGN KEY (hotel_id) REFERENCES hotel (id) ON DELETE CASCADE,
+FOREIGN KEY (bed_category_id) REFERENCES bed_category (id) ON DELETE CASCADE,
+FOREIGN KEY (room_category_id) REFERENCES room_category (id) ON DELETE CASCADE
 );
 SELECT * FROM room;
 
@@ -428,8 +428,8 @@ dt date DEFAULT NULL,
 room_status int DEFAULT 1, -- 1 or 0
 room_id int DEFAULT NULL,
 PRIMARY KEY (id),
-FOREIGN KEY (room_id) REFERENCES room (id),-- ON DELETE CASCADE,
-FOREIGN KEY (dt) REFERENCES calendar_table (dt)-- ON DELETE CASCADE,
+FOREIGN KEY (room_id) REFERENCES room (id) ON DELETE CASCADE,
+FOREIGN KEY (dt) REFERENCES calendar_table (dt) ON DELETE CASCADE
 );
 SELECT * FROM room_dates;
 
@@ -458,8 +458,8 @@ total_price decimal (10,2) DEFAULT NULL,
 payment_method varchar(100) DEFAULT NULL,
 payment_date date DEFAULT NULL,
 PRIMARY KEY (id),
-FOREIGN KEY (voucher_id) REFERENCES voucher (id),-- ON DELETE CASCADE,
-FOREIGN KEY (user_id) REFERENCES users (id)-- ON DELETE CASCADE,
+FOREIGN KEY (voucher_id) REFERENCES voucher (id) ON DELETE CASCADE,
+FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
 SELECT * FROM booking;
 
@@ -475,8 +475,8 @@ payment_date date DEFAULT NULL,
 payment_total decimal (10,2) DEFAULT NULL,
 payment_method varchar(100) DEFAULT NULL,
 PRIMARY KEY (id),
-FOREIGN KEY (booking_id) REFERENCES booking (id),-- ON DELETE CASCADE,
-FOREIGN KEY (user_id) REFERENCES users (id)-- ON DELETE CASCADE,
+FOREIGN KEY (booking_id) REFERENCES booking (id) ON DELETE CASCADE,
+FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
 SELECT * FROM bill;
 
@@ -495,9 +495,9 @@ booking_id int DEFAULT NULL ,
 room_id int DEFAULT NULL,
 hotel_id int DEFAULT NULL,
 PRIMARY KEY (id),
-FOREIGN KEY (booking_id) REFERENCES booking (id),-- ON DELETE CASCADE,
-FOREIGN KEY (room_id) REFERENCES room (id),-- ON DELETE CASCADE,
-FOREIGN KEY (hotel_id) REFERENCES hotel (id)-- ON DELETE CASCADE,
+FOREIGN KEY (booking_id) REFERENCES booking (id) ON DELETE CASCADE,
+FOREIGN KEY (room_id) REFERENCES room (id) ON DELETE CASCADE,
+FOREIGN KEY (hotel_id) REFERENCES hotel (id) ON DELETE CASCADE
 );
 -- --------------------------------------
 DROP TABLE IF EXISTS booking_room_dates;
@@ -511,8 +511,8 @@ booking_id int DEFAULT NULL,
 check_in date DEFAULT NULL,
 check_out date DEFAULT NULL,
 PRIMARY KEY (id),
-FOREIGN KEY (booking_id) REFERENCES booking (id),-- ON DELETE CASCADE,
-FOREIGN KEY (room_dates_id) REFERENCES room_dates (id)-- ON DELETE CASCADE,
+FOREIGN KEY (booking_id) REFERENCES booking (id) ON DELETE CASCADE,
+FOREIGN KEY (room_dates_id) REFERENCES room_dates (id) ON DELETE CASCADE
 );
 -- -------------------------------
 DROP TABLE IF EXISTS offer_status;
