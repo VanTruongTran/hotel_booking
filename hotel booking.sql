@@ -1,4 +1,4 @@
-DROP database hotel_booking;
+-- DROP database hotel_booking;
 
 CREATE DATABASE hotel_booking;
 USE hotel_booking;
@@ -527,7 +527,7 @@ PRIMARY KEY (id));
 
 
 
-
+/*
 -- ------------ DATABASE CREATION ENDS HERE -----------------
 -- ----------------------------------------------------------
 -- ------------------------------- --------------------------
@@ -591,54 +591,4 @@ SET booking_room.offerStatus = offer_status.offerStatus;
 -- đang tắt safe mode
 
 SELECT * FROM booking_room;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+*/
