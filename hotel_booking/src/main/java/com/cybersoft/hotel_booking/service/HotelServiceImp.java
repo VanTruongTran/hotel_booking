@@ -15,10 +15,8 @@ public class HotelServiceImp implements HotelService {
     //CREATE
     @Override
     public HotelEntity addHotel(HotelEntity hotelEntity) {
-        if (hotelEntity != null) {
-            return hotelRepository.save(hotelEntity);
-        }
-        return null;
+        hotelEntity.setId(0);
+        return hotelRepository.save(hotelEntity);
     }
 
     //READ
@@ -35,23 +33,10 @@ public class HotelServiceImp implements HotelService {
     //UPDATE
     @Override
     public HotelEntity updateHotel(int id, HotelEntity hotelEntity) {
-        if (hotelEntity != null) {
-            HotelEntity hotelEntityFromDB = hotelRepository.findById(id).orElse(null);
-            if (hotelEntityFromDB != null) {
-                hotelEntityFromDB.setHotelName(hotelEntity.getHotelName());
-                hotelEntityFromDB.setAddress(hotelEntity.getAddress());
-                hotelEntityFromDB.setEmail(hotelEntity.getEmail());
-                hotelEntityFromDB.setPhone(hotelEntity.getPhone());
-                hotelEntityFromDB.setHotelRank(hotelEntity.getHotelRank());
-                hotelEntityFromDB.setDescription(hotelEntity.getDescription());
-                hotelEntityFromDB.setImage(hotelEntity.getImage());
-                hotelEntityFromDB.setCity(hotelEntity.getCity());
-                hotelEntityFromDB.setHotelServiceEntitySet(hotelEntity.getHotelServiceEntitySet());
-                hotelEntityFromDB.setAttractionEntitySet(hotelEntity.getAttractionEntitySet());
-                hotelEntityFromDB.setReviewEntitySet(hotelEntity.getReviewEntitySet());
-                hotelEntityFromDB.setRoomEntitySet(hotelEntity.getRoomEntitySet());
-                return hotelRepository.save(hotelEntityFromDB);
-            }
+        HotelEntity hotelEntityFromDB = hotelRepository.findById(id).orElse(null);
+        if (hotelEntityFromDB != null) {
+            hotelEntity.setId(id);
+            return hotelRepository.save(hotelEntity);
         }
         return null;
     }

@@ -31,12 +31,12 @@ public class HotelController {
             return ResponseEntity.ok(dataResponse);
         }
 
-        HotelEntity hotelEntity1 = hotelService.addHotel(hotelEntity);
+        HotelEntity hotelEntityAdded = hotelService.addHotel(hotelEntity);
 
         dataResponse.setStatus(HttpStatus.CREATED.value());//201
         dataResponse.setSuccess(true);
         dataResponse.setDesc(HttpStatus.CREATED.getReasonPhrase());//CREATED
-        dataResponse.setData(hotelEntity1);
+        dataResponse.setData(hotelEntityAdded);
 
         return ResponseEntity.ok(dataResponse);
     }
@@ -102,9 +102,9 @@ public class HotelController {
             return ResponseEntity.ok(dataResponse);
         }
 
-        HotelEntity hotelEntity1 = hotelService.updateHotel(id, hotelEntity);
+        HotelEntity hotelEntityUpdated = hotelService.updateHotel(id, hotelEntity);
 
-        if (hotelEntity1 == null) {//NOT FOUND
+        if (hotelEntityUpdated == null) {//NOT FOUND
             dataResponse.setStatus(HttpStatus.NOT_FOUND.value());//404
             dataResponse.setSuccess(false);
             dataResponse.setDesc(HttpStatus.NOT_FOUND.getReasonPhrase());//NOT FOUND
@@ -116,7 +116,7 @@ public class HotelController {
         dataResponse.setStatus(HttpStatus.OK.value());//200
         dataResponse.setSuccess(true);
         dataResponse.setDesc(HttpStatus.OK.getReasonPhrase());//OK
-        dataResponse.setData(hotelEntity1);
+        dataResponse.setData(hotelEntityUpdated);
 
         return ResponseEntity.ok(dataResponse);
     }

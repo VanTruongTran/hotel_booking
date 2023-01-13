@@ -1,4 +1,5 @@
 -- DROP database hotel_booking;
+-- SET SQL_SAFE_UPDATES = 0;
 
 CREATE DATABASE hotel_booking;
 USE hotel_booking;
@@ -18,7 +19,6 @@ name varchar(100),
 phone varchar(100),
 PRIMARY KEY (id));
 
-
 -- ---------------------------------
 DROP TABLE IF EXISTS roles;
 CREATE TABLE roles (
@@ -30,8 +30,8 @@ PRIMARY KEY (id));
 INSERT INTO roles (role_name) VALUES 
 ('admin'),
 ('regular');
-SELECT * FROM roles;
--- ----------------------------
+-- SELECT * FROM roles;
+----------------------------
 DROP TABLE IF EXISTS users;
 CREATE TABLE users (
 id int NOT NULL AUTO_INCREMENT,
@@ -44,9 +44,9 @@ phone varchar(100) DEFAULT NULL,
 gender varchar(100) DEFAULT NULL,
 role_id int,
 PRIMARY KEY (id),
-FOREIGN KEY (role_id) REFERENCES roles (id)-- ON DELETE CASCADE,
+FOREIGN KEY (role_id) REFERENCES roles (id) ON DELETE CASCADE
 );
-SELECT * FROM users;
+-- SELECT * FROM users;
 
 /*Data for the table users */
 INSERT INTO users (full_name, DOB, email, password, phone, gender, role_id) VALUES 
@@ -56,7 +56,7 @@ INSERT INTO users (full_name, DOB, email, password, phone, gender, role_id) VALU
 ('Nguyen Van D ', '1992-01-15', 'nguyenvanD92@gmail.com', '123459', '090333888', 'Male', 2),
 ('Nguyen Van E ', '1995-01-15', 'nguyenvanE95@gmail.com', '123450', '090333881', 'Male', 2),
 ('Nguyen Van F ', '1998-01-15', 'nguyenvanE98@gmail.com', '123453', '090333889', 'Male', 2);
-SELECT * FROM users;
+-- SELECT * FROM users;
 
 -- ----------------------------
 DROP TABLE IF EXISTS province;
@@ -64,14 +64,14 @@ CREATE TABLE province (
 id int NOT NULL AUTO_INCREMENT,
 province varchar(255) DEFAULT NULL,
 PRIMARY KEY (id));
-SELECT * FROM province;
+-- SELECT * FROM province;
 
 INSERT INTO province (province) VALUES 
 ('Đà Nẵng'),
 ('Quảng Nam'),
 ('Huế'),
 ('Bình Định');
-SELECT * FROM province;
+-- SELECT * FROM province;
 -- --------------------
 DROP TABLE IF EXISTS city;
 CREATE TABLE city (
@@ -79,9 +79,9 @@ id int NOT NULL AUTO_INCREMENT,
 city varchar(255) DEFAULT NULL,
 province_id int DEFAULT NULL,
 PRIMARY KEY (id),
-FOREIGN KEY (province_id) REFERENCES province (id)-- ON DELETE CASCADE,
+FOREIGN KEY (province_id) REFERENCES province (id) ON DELETE CASCADE
 );
-SELECT * FROM city;
+-- SELECT * FROM city;
 
 INSERT INTO city (city, province_id) VALUES 
 ('Đà Nẵng',1),
@@ -89,14 +89,14 @@ INSERT INTO city (city, province_id) VALUES
 ('Hội An', 2),
 ('Huế', 3),
 ('Quy Nhơn',4);
-SELECT * FROM city;
--- -------------------------
+-- SELECT * FROM city;
+-------------------------
 DROP TABLE IF EXISTS service;
 CREATE TABLE service(
 id int NOT NULL AUTO_INCREMENT,
 service varchar(100) DEFAULT NULL,
 PRIMARY KEY (id));
-SELECT * FROM service;
+-- SELECT * FROM service;
 
 INSERT INTO service (service) VALUES 
 ('pool'),
@@ -104,8 +104,8 @@ INSERT INTO service (service) VALUES
 ('spa'),
 ('gym'),
 ('airport transfer');
-SELECT * FROM service;
--- ---------------------
+-- SELECT * FROM service;
+---------------------
 DROP TABLE IF EXISTS hotel;
 CREATE TABLE hotel (
 id int NOT NULL AUTO_INCREMENT,
@@ -121,7 +121,7 @@ city_id int DEFAULT NULL,
 PRIMARY KEY (id),
 FOREIGN KEY (city_id) REFERENCES city (id) ON DELETE CASCADE
 );
-SELECT * FROM hotel;
+-- SELECT * FROM hotel;
 
 INSERT INTO hotel (hotel_name, address, email, phone, hotel_rank, description, city_id) VALUES
 ('HAIAN Beach Hotel & Spa', '278 Vo Nguyen Giap Street, My An Ward, Ngu Hanh Son District, Da Nang', 'haianhotel@gmail.com', '083212234', 5, 'The car parking and the Wi-Fi are always free, so you can stay in touch and come and go as you please. Conveniently situated in the Phước Mỹ part of Đà Nẵng, this property puts you close to attractions and interesting dining options.', 1),
@@ -132,7 +132,7 @@ INSERT INTO hotel (hotel_name, address, email, phone, hotel_rank, description, c
 ('Thanh Binh Central Hotel', '98 Ba Trieu Street - Hoi An City', 'thanhbinh@gmail.com', '085555666', 3, 'The car parking and the Wi-Fi are always free, so you can stay in touch and come and go as you please. Strategically situated in Cẩm Phô, allowing you access and proximity to local attractions and sights', 3),
 ('Senna Hue Hotel', '7 Nguyen Tri Phuong, Hue City, Hue', 'senna@gmail.com', '081123123', 5, 'The car parking and the Wi-Fi are always free, so you can stay in touch and come and go as you please. Strategically situated in Hue City, allowing you access and proximity to local attractions and sights.' , 4),
 ('White Lotus Hue Hotel', '05-07 Hoang Hoa Tham str., Hue city, Hue City', 'whilelotus@yahoo.com', '081111222', 3, 'The car parking and the Wi-Fi are always free, so you can stay in touch and come and go as you please. Strategically situated in Hue City, allowing you access and proximity to local attractions and sights.' , 4);
-SELECT * FROM hotel;
+-- SELECT * FROM hotel;
 -- --------------------------------
 DROP TABLE IF EXISTS hotel_service;
 CREATE TABLE hotel_service(
@@ -183,7 +183,7 @@ INSERT INTO hotel_service (hotel_id, service_id) VALUES
 (8,3),
 (8,5);
 
-SELECT * FROM hotel_service;
+-- SELECT * FROM hotel_service;
 -- -----------------------------
 DROP TABLE IF EXISTS attraction;
 CREATE TABLE attraction (
@@ -196,7 +196,7 @@ hotel_id int DEFAULT NULL,
 PRIMARY KEY (id),
 FOREIGN KEY (hotel_id) REFERENCES hotel (id) ON DELETE CASCADE
 );
-SELECT * FROM attraction;
+-- SELECT * FROM attraction;
 
 INSERT INTO attraction (name, distance, hotel_id) VALUES
 ('Nhà thờ Đức Bà',10.22,1),
@@ -239,7 +239,7 @@ INSERT INTO attraction (name, distance, hotel_id) VALUES
 ('Công viên nước Đại Thế Giới',7.66,8),
 ('Bến Nhà Rồng',10.26,8),
 ('Nhà thờ Tân Định',4.42,8);
-SELECT * FROM attraction;
+-- SELECT * FROM attraction;
 
 -- ---------------------------------
 DROP TABLE IF EXISTS review;
@@ -254,7 +254,7 @@ PRIMARY KEY (id),
 FOREIGN KEY (hotel_id) REFERENCES hotel (id) ON DELETE CASCADE,
 FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
-SELECT * FROM review;
+-- SELECT * FROM review;
 
 INSERT INTO review (content, rate_score, hotel_id, user_id) VALUES 
 ( 'good', 5, 1, 3 ),
@@ -285,7 +285,7 @@ INSERT INTO review (content, rate_score, hotel_id, user_id) VALUES
 ( 'bad', 2, 2, 6 ),
 ( 'bad', 2, 3, 6 ),
 ( 'bad', 2, 4, 6 );
-SELECT * FROM review;
+-- SELECT * FROM review;
 
 -- ------------------------------
 DROP TABLE IF EXISTS room_category;
@@ -298,7 +298,7 @@ INSERT INTO room_category (room_category) VALUES
 ('deluxe'),
 ('family'),
 ('president');
-SELECT * FROM room_category;
+-- SELECT * FROM room_category;
 -- --------------------------------
 DROP TABLE IF EXISTS bed_category;
 CREATE TABLE bed_category (
@@ -312,7 +312,7 @@ INSERT INTO  bed_category (bed_category) VALUES
 ('single Queen'),
 ('double Queen'),
 ('single King');
-SELECT * FROM bed_category;
+-- SELECT * FROM bed_category;
 -- -----------------------
 DROP TABLE IF EXISTS room;
 CREATE TABLE room (
@@ -329,7 +329,7 @@ FOREIGN KEY (hotel_id) REFERENCES hotel (id) ON DELETE CASCADE,
 FOREIGN KEY (bed_category_id) REFERENCES bed_category (id) ON DELETE CASCADE,
 FOREIGN KEY (room_category_id) REFERENCES room_category (id) ON DELETE CASCADE
 );
-SELECT * FROM room;
+-- SELECT * FROM room;
 
 INSERT INTO room( hotel_id,room_name,room_category_id, bed_category_id,  max_occupy_adult, max_occupy_child, price) VALUES 
 (1,'HA01',1,1,1,1,50),
@@ -369,7 +369,7 @@ INSERT INTO room( hotel_id,room_name,room_category_id, bed_category_id,  max_occ
 (8,'WL03',2,3,2,1,80),
 (8,'WL04',3,4,4,2,100),
 (8,'WL04',4,5,6,3,350);
-SELECT * FROM room;
+-- SELECT * FROM room;
 
 -- SELECT count(*) FROM room;
 -- --------------------------
@@ -390,7 +390,7 @@ expired_date ) VALUES
 ('HOLIDAY', 15, '2023-05-30'),
 ('PROMO20', 20, '2023-09-30'),
 ('PROMO25', 25, '2023-09-30');
-SELECT * FROM voucher;
+-- SELECT * FROM voucher;
 -- -----------------------------------------------------
 -- Tạo bảng calendar_table để có series ngày trong 1 năm
 DROP TABLE IF EXISTS calendar_table;
@@ -419,7 +419,7 @@ SELECT DATE('2023-01-01') + INTERVAL a.i*10000 + b.i*1000 + c.i*100 + d.i*10 + e
 FROM ints a JOIN ints b JOIN ints c JOIN ints d JOIN ints e
 WHERE (a.i*10000 + b.i*1000 + c.i*100 + d.i*10 + e.i) <= 364 -- 1 NĂM
 ORDER BY 1;
-SELECT count(*) FROM calendar_table; 
+-- SELECT count(*) FROM calendar_table; 
 -- ------------------------------------------------------
 DROP TABLE IF EXISTS room_dates;
 CREATE TABLE room_dates (
@@ -431,14 +431,14 @@ PRIMARY KEY (id),
 FOREIGN KEY (room_id) REFERENCES room (id) ON DELETE CASCADE,
 FOREIGN KEY (dt) REFERENCES calendar_table (dt) ON DELETE CASCADE
 );
-SELECT * FROM room_dates;
+-- SELECT * FROM room_dates;
 
 -- Dữ liệu được tạo ra từ ban đầu 
 INSERT INTO room_dates (room_id, dt)
 SELECT room.id, calendar_table.dt 
 FROM room 
 CROSS JOIN calendar_table;
-SELECT * FROM room_dates;
+-- SELECT * FROM room_dates;
 -- SELECT count(*) FROM room_dates; -- tested ok
 -- --------------------------------------
 DROP TABLE IF EXISTS booking;
@@ -461,7 +461,7 @@ PRIMARY KEY (id),
 FOREIGN KEY (voucher_id) REFERENCES voucher (id) ON DELETE CASCADE,
 FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
-SELECT * FROM booking;
+-- SELECT * FROM booking;
 
 -- CẦN BỔ SUNG THÊM CÂU LỆNH INSERT 1 BOOKING ĐƯỢC THỰC HIỆN TẠO 1 BOOKING
 -- -------------------------------
@@ -478,7 +478,7 @@ PRIMARY KEY (id),
 FOREIGN KEY (booking_id) REFERENCES booking (id) ON DELETE CASCADE,
 FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
-SELECT * FROM bill;
+-- SELECT * FROM bill;
 
 -- CẦN BỔ SUNG THÊM CÂU LỆNH INSERT 1 BOOKING ĐƯỢC THỰC HIỆN THANH TOÁN
 -- -----------------------------------
