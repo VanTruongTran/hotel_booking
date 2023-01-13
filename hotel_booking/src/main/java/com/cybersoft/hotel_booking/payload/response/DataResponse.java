@@ -10,5 +10,4 @@ public class DataResponse {
     private boolean isSuccess;
     private String desc;
     private Object data;
-
 }
